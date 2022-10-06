@@ -50,6 +50,7 @@
       this.sendMessage('disconnectGATT');
     },
     getPrimaryService: async function (uuid) {
+      console.log("In getPrimaryServices")
       if (!uuid) {
         return Promise.reject(new Error('getPrimaryService requires a UUID'));
       }
@@ -57,6 +58,7 @@
       return services[0];
     },
     getPrimaryServices: async function (uuid) {
+      console.log("In getPrimaryServices")
       const data = {
       data: uuid ? {serviceUUID: window.BluetoothUUID.getService(uuid)} : {},
       };

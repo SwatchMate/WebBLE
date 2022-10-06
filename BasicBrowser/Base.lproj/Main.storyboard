@@ -36,15 +36,6 @@
                     <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I1P-4j-XZZ">
-                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="ew5-31-Qcw"/>
-                                </constraints>
-                                <connections>
-                                    <segue destination="uPD-zx-e6p" kind="embed" id="p3n-JP-7AI"/>
-                                </connections>
-                            </containerView>
                             <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tick@480.png" translatesAutoresizingMaskIntoConstraints="NO" id="6wE-az-iDp">
                                 <rect key="frame" x="65.5" y="211" width="240" height="240"/>
                                 <constraints>
@@ -59,6 +50,15 @@
                                     <outletCollection property="gestureRecognizers" destination="QVE-VE-sVj" appends="YES" id="J2j-S7-lR0"/>
                                 </connections>
                             </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I1P-4j-XZZ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="33" id="ew5-31-Qcw"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="uPD-zx-e6p" kind="embed" id="p3n-JP-7AI"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fUp-cf-yrq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -115,7 +115,7 @@
                     <navigationItem key="navigationItem" id="5bm-lP-CUV">
                         <nil key="title"/>
                         <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" preservesSuperviewLayoutMargins="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" id="O1l-7F-uXL" customClass="URLTextField" customModule="WebBLE" customModuleProvider="target">
-                            <rect key="frame" x="8" y="5" width="359" height="34"/>
+                            <rect key="frame" x="10" y="5" width="354" height="34"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>

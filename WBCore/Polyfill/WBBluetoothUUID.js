@@ -39,7 +39,7 @@
   BluetoothUUID.service = {
     alert_notification: canonicalUUID(0x1811),
     automation_io: canonicalUUID(0x1815),
-    battery_service: canonicalUUID(0x180F),
+    Battery: canonicalUUID(0x180F),
     blood_pressure: canonicalUUID(0x1810),
     body_composition: canonicalUUID(0x181B),
     bond_management: canonicalUUID(0x181E),
@@ -53,7 +53,7 @@
     generic_attribute: canonicalUUID(0x1801),
     glucose: canonicalUUID(0x1808),
     health_thermometer: canonicalUUID(0x1809),
-    heart_rate: canonicalUUID(0x180D),
+    Heart_Rate: canonicalUUID(0x180D),
     human_interface_device: canonicalUUID(0x1812),
     immediate_alert: canonicalUUID(0x1802),
     indoor_positioning: canonicalUUID(0x1821),
@@ -254,6 +254,10 @@
   function resolveUUIDName(tableName) {
     let table = BluetoothUUID[tableName];
     return function (name) {
+      if (name === 'Heart Rate'){
+          console.log('Got the name right!')
+          name = "Heart_Rate"
+      }
       if (typeof name === 'number') {
         return canonicalUUID(name);
       }
@@ -270,6 +274,7 @@
         // but iOS sends us short UUIDs and so we need to handle it.
         return canonicalUUID(parseInt(name, 16));
       }
+      console.log("Not a known service error!")
       throw new TypeError(`${name} is not a known ${tableName} name.`);
     };
   }

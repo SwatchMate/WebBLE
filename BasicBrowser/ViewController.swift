@@ -44,11 +44,11 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         userDefaults: UserDefaults.standard, key: prefKeys.bookmarks.rawValue)
 
     var consoleViewBottomConstraint: NSLayoutConstraint? = nil
-    var shouldShowBars = true {
+    var shouldShowBars = false {
         didSet {
             let nc = self.navigationController!
-            nc.setToolbarHidden(!self.shouldShowBars, animated: true)
-            nc.setNavigationBarHidden(!self.shouldShowBars, animated: true)
+            nc.setToolbarHidden(true, animated: false)
+            nc.setNavigationBarHidden(false, animated: true)
             self.setNeedsUpdateOfHomeIndicatorAutoHidden()
             self._setExtraBarHiddenState()
             self.setHidesOnSwipesFromScrollView(
@@ -183,6 +183,9 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
 
         // connect view to other objects
         self.locationTextField.delegate = self
+        self.locationTextField.isHidden = true
+        self.showConsoleButton.isEnabled = false
+        self.extraShowBarsView.isHidden = true
         self.webView.addNavigationDelegate(self)
         self.webView.scrollView.delegate = self
         self.webView.scrollView.clipsToBounds = false
@@ -197,6 +200,7 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
         // Load last location
         if let url = initialURL {
             loadURL(url)
+            NSLog("Initial URL load \(url)")
         }
         else {
             var lastLocation: String
@@ -204,15 +208,17 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
             lastLocation = prefLoc
             } else {
                 let svers = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
-                lastLocation = "https://www.greenparksoftware.co.uk/projects/webble/\(svers)"
+                NSLog("Svers: \(svers)")
             }
+            lastLocation = "https://cubepro.azurewebsites.net"
+            NSLog("URL load: \(lastLocation)")
             self.loadLocation(lastLocation)
         }
 
         // Maybe re-open console
-        if ud.bool(forKey: prefKeys.consoleOpen.rawValue) {
-            self.toggleConsole()
-        }
+//        if ud.bool(forKey: prefKeys.consoleOpen.rawValue) {
+//            self.toggleConsole()
+//        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -410,7 +416,9 @@ class ViewController: UIViewController, UITextFieldDelegate, WKNavigationDelegat
     }
     private func _setExtraBarHiddenState() {
         let pickerIsShowing = self.webViewContainerController.pickerIsShowing
-        let toolBarIsShowing = !self.navigationController!.isToolbarHidden
-        self.extraShowBarsView.isHidden = pickerIsShowing || toolBarIsShowing
+        // let toolBarIsShowing = !self.navigationController!.isToolbarHidden
+        let toolBarIsShowing = false
+        // self.extraShowBarsView.isHidden = pickerIsShowing || toolBarIsShowing
+        self.extraShowBarsView.isHidden = true
     }
 }

@@ -54,6 +54,7 @@ Others are available on the app store which provide varying levels of support / 
 - `.value`
 - `.readValue()`
 - `.writeValue(value)`
+- `.writeValueWithoutResponse(value)`
 - `.oncharacteristicvaluechanged: EventHandler`
 - `.startNotifications()`
 - `.stopNotifications()`

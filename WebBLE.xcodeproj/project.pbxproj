@@ -322,6 +322,7 @@
 				TargetAttributes = {
 					E44C18551A36203E00734F8B = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = H57Q994RQL;
 						LastSwiftMigration = 1030;
 					};
 					E44C186A1A36203E00734F8B = {
@@ -570,13 +571,14 @@
 		E44C18761A36203E00734F8B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = H57Q994RQL;
 				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = BasicBrowser/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.6.0;
-				PRODUCT_BUNDLE_IDENTIFIER = co.uk.greenparksoftware.webble;
+				PRODUCT_BUNDLE_IDENTIFIER = co.uk.sample;
 				PRODUCT_NAME = WebBLE;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -586,8 +588,9 @@
 		E44C18771A36203E00734F8B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = BasicBrowser/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.6.0;

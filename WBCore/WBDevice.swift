@@ -29,7 +29,8 @@ open class WBDevice: NSObject, Jsonifiable, CBPeripheralDelegate {
         case connectGATT, disconnectGATT, getPrimaryServices,
         getCharacteristic, getCharacteristics, readCharacteristicValue, startNotifications,
         stopNotifications,
-        writeCharacteristicValue
+        writeCharacteristicValue,
+        writeCharacteristicValueWithoutResponse
     }
     // MARK: Transaction views
     class DeviceTransactionView: WBTransaction.View {
@@ -398,6 +399,23 @@ open class WBDevice: NSObject, Jsonifiable, CBPeripheralDelegate {
 
             self.writeCharacteristicValue(char, view)
 
+        case .writeCharacteristicValueWithoutResponse:
+            guard
+                let view = WriteCharacteristicView(transaction: transaction)
+            else {
+                transaction.resolveAsFailure(withMessage: "Invalid write characteristic message")
+                break
+            }
+
+            guard
+                let char = self.getCharacteristic(view.serviceUUID, uuid: view.characteristicUUID)
+            else {
+                view.resolveUnknownCharacteristic()
+                break
+            }
+
+            self.writeCharacteristicValueWithoutResponse(char, view)
+
         case .startNotifications:
             guard let view = CharacteristicView(transaction: transaction) else {
                 transaction.resolveAsFailure(withMessage: "Invalid start notifications message")
@@ -613,8 +631,11 @@ open class WBDevice: NSObject, Jsonifiable, CBPeripheralDelegate {
             self.getPrimaryServicesTM.addTransaction(transaction, atPath: tview.serviceUUID)
             NSLog("Starting discovering for services on peripheral \(self.peripheral.name ?? "<unknown name>")")
             self.peripheral.discoverServices(nil)
+            dump(self.peripheral.services)
+            NSLog("Services discovered - %@")
             return
         }
+        NSLog("Services discovered - %@", services);
         tview.resolveFromServices(services)
     }
 
@@ -645,6 +666,18 @@ open class WBDevice: NSObject, Jsonifiable, CBPeripheralDelegate {
         if char.properties.contains(.write) {
             self.peripheral.writeValue(view.data, for: char, type: CBCharacteristicWriteType.withResponse)
             self.writeCharacteristicTM.addTransaction(view.transaction, atPath: CharacteristicTransactionKey(serviceUUID: view.serviceUUID, characteristicUUID: view.characteristicUUID))
+        } else if char.properties.contains(.writeWithoutResponse) {
+            self.peripheral.writeValue(view.data, for: char, type: CBCharacteristicWriteType.withoutResponse)
+            view.transaction.resolveAsSuccess()
+        } else {
+            view.transaction.resolveAsFailure(withMessage: "Characteristic does not support writing")
+            return
+        }
+    }
+    private func writeCharacteristicValueWithoutResponse(_ char: CBCharacteristic, _ view: WriteCharacteristicView) {
+        if char.properties.contains(.write) {
+            self.peripheral.writeValue(view.data, for: char, type: CBCharacteristicWriteType.withoutResponse)
+            view.transaction.resolveAsSuccess()
         } else if char.properties.contains(.writeWithoutResponse) {
             self.peripheral.writeValue(view.data, for: char, type: CBCharacteristicWriteType.withoutResponse)
             view.transaction.resolveAsSuccess()
