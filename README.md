@@ -2,16 +2,9 @@
 
 Initial partial implementation of the [Web Bluetooth](https://webbluetoothcg.github.io/web-bluetooth/) 
 spec for iOS, originally forked from [Paul Thierault](https://github.com/pauljt)'s [original implementation](https://github.com/pauljt/BleBrowser).
+Further, forked by myself from daphtdazz's modified version that was available as an app from the app store.
 
 WebBLE is licensed under the Apache Version 2.0 License as per the [LICENSE](LICENSE) file.
-
-### Distributions
-
--  [WebBLE](https://apps.apple.com/gb/app/webble/id1193531073) was the first distribution and the one that I (daphtdazz) maintain and support. Purchasing this is the best way to support the project.
-
-Others are available on the app store which provide varying levels of support / alternative features.
-
-> If you would like to add your distribution to this list then please send a PR, but it should provide some extra functionality over WebBLE and not just be a direct clone.
 
 
 ## Supported APIs v1.0
@@ -54,24 +47,22 @@ Others are available on the app store which provide varying levels of support / 
 - `.value`
 - `.readValue()`
 - `.writeValue(value)`
-- `.writeValueWithoutResponse(value)`
+- `.writeValueWithoutResponse(value)` 
 - `.oncharacteristicvaluechanged: EventHandler`
 - `.startNotifications()`
 - `.stopNotifications()`
 - `.addEventListener()`
 - `.removeEventListener()`
 
-Everything else is TBD!
 
-## Development
-
-Info if you want to add features / fix bugs in the project.
-
-### Setup
-
-If you want to build and run locally, you just have to do the following:
-
-- Set your `DEVELOPMENT_TEAM` ID in Locations -> Custom Paths as per [this stackoverflow](https://stackoverflow.com/questions/39669661/how-to-prevent-xcode-8-from-saving-development-team-in-pbxproj/40424891#40424891) answer, which is to avoid pushing personal / conflicting team IDs to github. 
+### Development 
+- Changes to UI
+  - removed address bar
+  - removed/hid console for debugging
+  - fixed address load - loads cubepro page directly
+- Other changes 
+  - Added support for writewithoutresponse
+  - UUID mapping changed - which caused initial issues
 
 ### Testing
 
