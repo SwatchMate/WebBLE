@@ -4,6 +4,11 @@ Initial partial implementation of the [Web Bluetooth](https://webbluetoothcg.git
 spec for iOS, originally forked from [Paul Thierault](https://github.com/pauljt)'s [original implementation](https://github.com/pauljt/BleBrowser).
 Further, forked by myself from daphtdazz's modified version that was available as an app from the app store.
 
+This modified version has been set up as a custom app for Palette to work with the CubePro web app. 
+This app has already been uploaded to app store connect and can be used with testflite for testing. 
+The current version is expired, so a new version has to be upaloded in order to get it going again. 
+Expired version of the app cannot be revived.
+
 WebBLE is licensed under the Apache Version 2.0 License as per the [LICENSE](LICENSE) file.
 
 
